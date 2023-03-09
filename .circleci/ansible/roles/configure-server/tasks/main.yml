@@ -76,14 +76,19 @@
     update_cache: yes
   tags:
     - docker
-- name: Add remote "ubuntu" user to "docker" group
-  remote_user: ubuntu
-  user:
-    name: "ubuntu"
-    group: "docker"
-    append: yes
-  tags:
-    - docker
+# - name: Add remote "ubuntu" user to "docker" group
+#   remote_user: ubuntu
+#   user:
+#     name: "ubuntu"
+#     group: "docker"
+#     append: yes
+#   tags:
+#     - docker
+- name: sudo usermod -aG docker root
+  become: True
+  shell:
+    cmd: "usermod -aG docker ubuntu"
+    chdir: .
     
 - name: Install docker-compose
   become: true
