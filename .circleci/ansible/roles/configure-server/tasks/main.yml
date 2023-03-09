@@ -85,6 +85,7 @@
 #   tags:
 #     - docker
 - name: Install docker-compose
+  become: true
   remote_user: ubuntu
   get_url: 
     url : https://github.com/docker/compose/releases/download/v2.1.1/docker-compose-$(uname -s)-$(uname -m)
